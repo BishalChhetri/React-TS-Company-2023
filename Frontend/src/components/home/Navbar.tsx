@@ -61,7 +61,7 @@ export const Navbar = () => {
             <span className="stroke-text">Zephyron</span>
           </a>
 
-          <ul className="md:flex space-x-12 hidden">
+          <ul className="hidden lg:flex space-x-12 center">
             {navItems.map(({ link, path }) => (
               <Link
                 key={path}
@@ -101,7 +101,7 @@ export const Navbar = () => {
             </button>
           </div>
 
-          <div className="md:hidden">
+          <div className="flex lg:hidden">
             <button
               onClick={toggleMenu}
               className="text-neutralDGrey focus:outline-none focus:text-gray-500"
