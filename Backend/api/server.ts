@@ -68,7 +68,10 @@ app.use(helmet());
 
 app.use(
   cors({
-    origin: ["https://react-ts-company-2023.vercel.app/", "https://zephyron.onrender.com/api"],
+    origin: [
+      "https://react-ts-company-2023.vercel.app",
+      "https://zephyron.onrender.com/api",
+    ],
     credentials: true,
   }),
   express.json()
