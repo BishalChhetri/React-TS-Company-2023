@@ -95,7 +95,6 @@ const resolvers = {
     newMessage: {
       subscribe: (_: any, { input }: { input: ReceiverIdInput }) => {
         if (!input || !input.receiver_id) {
-          console.log("hey");
           throw new Error("Invalid input or missing receiver_id");
         }
         return pubsub.asyncIterator([`NEW_MESSAGE_${input.receiver_id}`]);

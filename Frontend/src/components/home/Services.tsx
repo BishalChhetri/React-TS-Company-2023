@@ -14,26 +14,29 @@ const Services = () => {
   const Services = [
     {
       id: 1,
-      title: "Membership Organizations",
+      title: "Real-time Messaging",
       description:
-        "Our membership management software provides full automation of membership renewals and payments",
+        "Engage in seamless real-time conversations with our advanced messaging features.",
     },
     {
       id: 2,
-      title: "National Associations",
+      title: "Chat Moderation",
       description:
-        "Our membership management software provides full automation of membership renewals and payments",
+        "Ensure a positive and secure environment with our advanced chat moderation tools.",
     },
     {
       id: 3,
-      title: "Clubs And Groups",
+      title: "Group Chats",
       description:
-        "Our membership management software provides full automation of membership renewals and payments",
+        "Connect and collaborate effortlessly with group chat functionalities.",
     },
   ];
   return (
-    <div className="md:px-14 px-4 py-16 max-w-screen-2xl mx-auto" id="service">
-      <div className="text-center my-8">
+    <div
+      className="md:px-14 px-4 py-16 max-w-screen-2xl mx-auto -z-50"
+      id="service"
+    >
+      <div className="text-center my-8 ">
         <h2 className="text-4xl  text-neutralDGrey font-semibold mb-2">
           Our Clients
         </h2>

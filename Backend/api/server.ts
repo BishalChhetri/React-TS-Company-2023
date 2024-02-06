@@ -68,7 +68,7 @@ app.use(helmet());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3301/api"],
+    origin: ["http://localhost:3000", "http://localhost:50013/api"],
     credentials: true,
   }),
   express.json()

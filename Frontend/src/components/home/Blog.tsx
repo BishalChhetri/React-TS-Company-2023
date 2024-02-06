@@ -33,7 +33,10 @@ const Blog = () => {
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 items-center justify-between">
         {blogs.map((blog) => (
-          <div key={blog.id} className="mx-auto relative mb-12 cursor-pointer">
+          <div
+            key={blog.id}
+            className="mx-auto relative mb-12 cursor-pointer -z-50"
+          >
             <img
               src={blog.id === 1 ? Blog1 : blog.id === 2 ? Blog2 : Blog3}
               alt=""

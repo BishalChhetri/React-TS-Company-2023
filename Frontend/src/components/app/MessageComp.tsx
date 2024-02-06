@@ -74,7 +74,7 @@ const MessageComp = ({ isMenuOpen, activeUser, auth }: Props) => {
 
   return (
     <div
-      className={`${
+      className={`bg-neutralSilver ${
         isMenuOpen
           ? "hidden"
           : "flex flex-col justify-between md:col-span-5 col-span-6"

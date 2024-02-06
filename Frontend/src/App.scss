@@ -9,7 +9,7 @@ header {
 }
 
 .btn-primary {
-  @apply px-7 py-2 bg-brandPrimary text-white rounded hover:bg-darkBrandPrimary transition-all duration-300 hover:-translate-y-4;
+  @apply px-7 py-2 bg-brandPrimary text-white rounded hover:bg-darkBrandPrimary transition-all duration-300 hover:-translate-y-4 cursor-pointer;
 }
 
 .input-primary {

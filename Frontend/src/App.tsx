@@ -56,12 +56,12 @@ const App: React.FC = () => {
   );
 
   const httpLink = new HttpLink({
-    uri: "http://localhost:3301/api",
+    uri: "http://localhost:50013/api",
   });
 
   const wsLink = new GraphQLWsLink(
     createClient({
-      url: "ws://localhost:3301/api",
+      url: "ws://localhost:50013/api",
     })
   );
 
@@ -83,7 +83,7 @@ const App: React.FC = () => {
     cache: new InMemoryCache(),
   });
 
-  const auth = useAppSelector((state) => state.user.isLoggedIn);
+  const auth = useAppSelector((state: any) => state.user.isLoggedIn);
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -11,11 +11,10 @@ import { QUERY_ALL_USERS } from "../../Query/index";
 import { useQuery } from "@apollo/client";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { useNavigate } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 interface SidebarProps {
   auth: UserData | undefined;
-  showModal: boolean;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   isMenuOpen: boolean;
   toggleMenu: () => void;
   activeUser: UserData | null;
@@ -24,8 +23,6 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({
   auth,
-  showModal,
-  setShowModal,
   isMenuOpen,
   toggleMenu,
   activeUser,
@@ -43,6 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   useEffect(() => {
     setUserData(data?.users);
+    console.log(loading);
   }, [data, loading]);
 
   useEffect(() => {
@@ -62,68 +60,60 @@ const Sidebar: React.FC<SidebarProps> = ({
   return (
     <>
       <div
-        className={`col-span-1 bg-neutralSilver flex flex-col justify-between md:flex hidden ${
+        className={`col-span-1 ${
+          activeUser ? "bg-white" : "bg-neutralSilver"
+        } flex flex-col justify-between md:flex hidden ${
           isMenuOpen &&
           "col-span-1 bg-neutralSilver flex flex-col justify-between"
         }`}
       >
-        <PerfectScrollbar
-          options={{ wheelPropagation: false as boolean }}
-          className="max-h-[530px] overflow-y-auto p-2 "
-        >
-          <div>
-            {userData &&
-              userData.map((data, i) =>
-                auth?.id !== data.id ? (
-                  <div
-                    className={`mt-4 mx-2 p-2 flex  ${
-                      activeUser?.id === data.id
-                        ? "border-darkBrandPrimary"
-                        : "border-neutralSilver"
-                    }  border-2 hover:border-brandPrimary rounded cursor-pointer`}
-                    key={data.id}
-                    onClick={() => handleItemClick(data)}
-                  >
-                    <img
-                      src={
-                        i % 5 === 0
-                          ? profile1
-                          : i % 5 === 1
-                          ? profile2
-                          : i % 5 === 2
-                          ? profile3
-                          : i % 5 === 3
-                          ? profile4
-                          : profile5
-                      }
-                      alt=""
-                      className="rounded-full w-[3rem]"
-                    />
-                    <div className="flex flex-col ms-2 justify-center lg:flex hidden">
-                      <span className="w-full">{data.name}</span>
-                      <span className="text-[0.5rem]">{data.email}</span>
-                    </div>
-                  </div>
-                ) : null
-              )}
+        {loading ? (
+          <div className="flex justify-center items-center mt-8">
+            <ClipLoader size={15} color="#ee4e6a" />
           </div>
-        </PerfectScrollbar>
-        <div className="flex flex-col justify-end mt-auto">
-          <button
-            onClick={() => {
-              setShowModal(true);
-            }}
-            className="bg-brandPrimary mx-1 text-white py-1 px-4 transition-all duration-300 rounded hover:bg-darkBrandPrimary"
+        ) : (
+          <PerfectScrollbar
+            options={{ wheelPropagation: false as boolean }}
+            className="max-h-[83vh] overflow-y-auto p-2 "
           >
-            Update Password
-          </button>
-          <button
-            onClick={() => dispatch(logoutUser())}
-            className="bg-brandPrimary m-1 text-white py-1 px-4 transition-all duration-300 rounded hover:bg-darkBrandPrimary"
-          >
-            Log Out
-          </button>
-        </div>
+            <div>
+              {userData &&
+                userData.map((data, i) =>
+                  auth?.id !== data.id ? (
+                    <div
+                      className={`mt-4 mx-2 p-2 flex  ${
+                        activeUser?.id === data.id
+                          ? "bg-[#ececec]"
+                          : "border-neutralSilver"
+                      }  hover:bg-[#ececec] rounded cursor-pointer`}
+                      key={data.id}
+                      onClick={() => handleItemClick(data)}
+                    >
+                      <img
+                        src={
+                          i % 5 === 0
+                            ? profile1
+                            : i % 5 === 1
+                            ? profile2
+                            : i % 5 === 2
+                            ? profile3
+                            : i % 5 === 3
+                            ? profile4
+                            : profile5
+                        }
+                        alt=""
+                        className="rounded-full w-[3rem]"
+                      />
+                      <div className="flex flex-col ms-2 justify-center lg:flex hidden">
+                        <span className="w-full">{data.name}</span>
+                        <span className="text-[0.5rem]">{data.email}</span>
+                      </div>
+                    </div>
+                  ) : null
+                )}
+            </div>
+          </PerfectScrollbar>
+        )}
       </div>
       <div
         className={`${
@@ -133,63 +123,53 @@ const Sidebar: React.FC<SidebarProps> = ({
         }`}
         onMouseLeave={toggleMenu}
       >
-        <PerfectScrollbar
-          options={{ wheelPropagation: false as boolean }}
-          className="max-h-[530px] overflow-y-auto p-1"
-        >
-          <div>
-            {userData &&
-              userData.map((data, i) =>
-                auth?.id !== data.id ? (
-                  <div
-                    className={`mt-4 mx-2 p-2 flex  ${
-                      activeUser?.id === data.id
-                        ? "border-darkBrandPrimary"
-                        : "border-neutralSilver"
-                    }  border-2 hover:border-brandPrimary rounded cursor-pointer`}
-                    key={data.id}
-                    onClick={() => handleItemClick(data)}
-                  >
-                    <img
-                      src={
-                        i % 5 === 0
-                          ? profile1
-                          : i % 5 === 1
-                          ? profile2
-                          : i % 5 === 2
-                          ? profile3
-                          : i % 5 === 3
-                          ? profile4
-                          : profile5
-                      }
-                      alt=""
-                      className="rounded-full w-[3rem]"
-                    />
-                    <div className="flex flex-col ms-2 justify-center">
-                      <span className="w-full">{data.name}</span>
-                      <span className="text-[0.5rem]">{data.email}</span>
-                    </div>
-                  </div>
-                ) : null
-              )}
+        {loading ? (
+          <div className="flex justify-center items-center mt-8">
+            <ClipLoader size={15} color="#ee4e6a" />
           </div>
-        </PerfectScrollbar>
-        <div className="flex flex-col justify-end mt-auto">
-          <button
-            onClick={() => {
-              setShowModal(true);
-            }}
-            className="bg-brandPrimary mx-1 text-white py-1 px-4 transition-all duration-300 rounded hover:bg-darkBrandPrimary"
+        ) : (
+          <PerfectScrollbar
+            options={{ wheelPropagation: false as boolean }}
+            className="max-h-[530px] overflow-y-auto p-1"
           >
-            Update Password
-          </button>
-          <button
-            onClick={() => dispatch(logoutUser())}
-            className="bg-brandPrimary  m-1 text-white py-1 px-4 transition-all duration-300 rounded hover:bg-darkBrandPrimary"
-          >
-            Log Out
-          </button>
-        </div>
+            <div>
+              {userData &&
+                userData.map((data, i) =>
+                  auth?.id !== data.id ? (
+                    <div
+                      className={`mt-4 mx-2 p-2 flex  ${
+                        activeUser?.id === data.id
+                          ? "border-darkBrandPrimary"
+                          : "border-neutralSilver"
+                      }  border-2 hover:border-brandPrimary rounded cursor-pointer`}
+                      key={data.id}
+                      onClick={() => handleItemClick(data)}
+                    >
+                      <img
+                        src={
+                          i % 5 === 0
+                            ? profile1
+                            : i % 5 === 1
+                            ? profile2
+                            : i % 5 === 2
+                            ? profile3
+                            : i % 5 === 3
+                            ? profile4
+                            : profile5
+                        }
+                        alt=""
+                        className="rounded-full w-[3rem]"
+                      />
+                      <div className="flex flex-col ms-2 justify-center">
+                        <span className="w-full">{data.name}</span>
+                        <span className="text-[0.5rem]">{data.email}</span>
+                      </div>
+                    </div>
+                  ) : null
+                )}
+            </div>
+          </PerfectScrollbar>
+        )}
       </div>
     </>
   );

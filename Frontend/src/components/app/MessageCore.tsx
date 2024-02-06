@@ -25,7 +25,7 @@ const MessageCore: React.FC<Props> = ({ messages, currentUser }) => {
   }, [messageAll]);
 
   return (
-    <div ref={scrollRef} className="flex-1 overflow-y-hidden ">
+    <div ref={scrollRef} className="flex-1 overflow-y-hidden">
       <PerfectScrollbar
         options={{
           wheelPropagation: false as boolean,

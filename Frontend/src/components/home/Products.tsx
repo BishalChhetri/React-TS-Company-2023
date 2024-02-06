@@ -53,7 +53,7 @@ const Products = () => {
                 positive brand image.
               </p>
               <h5 className="text-brandPrimary text-xl font-semibold mb-2">
-                Tim Smith
+                John Smith
               </h5>
               <p className="text-base text-neutralGrey mb-8">
                 British Dragon Boat Racing Association
