@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Carousel } from "flowbite-react";
 import illustration from "../../assets/Illustration.png";
 
 const Home = () => {
-  const [showModal, setShowModal] = useState({
-    signUpModal: false,
-  });
   return (
     <div className="bg-neutralSilver" id="home">
       <div className="px-4 lg:px-14 max-w-screen-2xl mx-auto min-h-screen h-screen text-brandPrimary">
