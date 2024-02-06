@@ -56,12 +56,12 @@ const App: React.FC = () => {
   );
 
   const httpLink = new HttpLink({
-    uri: "http://localhost:50013/api",
+    uri: "https://zephyron.onrender.com/api",
   });
 
   const wsLink = new GraphQLWsLink(
     createClient({
-      url: "ws://localhost:50013/api",
+      url: "ws://zephyron.onrender.com/api",
     })
   );
 
