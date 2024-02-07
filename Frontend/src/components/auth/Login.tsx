@@ -9,6 +9,7 @@ import Modal from "../Modal";
 import { useAppDispatch } from "../../hooks/hooks";
 import { setUser } from "../../redux/userSlice";
 import PasswordEye from "../PasswordEye";
+import { ClipLoader } from "react-spinners";
 
 type Props = {
   isVisible: boolean;
@@ -28,6 +29,7 @@ const Login = ({
   message,
 }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -45,6 +47,7 @@ const Login = ({
       setFormData({ ...formData, error: "All the fields are mandatory." });
       return;
     }
+    setLoading(true);
     try {
       const user = await loginUser({
         variables: {
@@ -61,12 +64,14 @@ const Login = ({
             userData: user.data.login,
           })
         );
+        setLoading(false);
         navigate("/app");
       } else {
         setFormData({ ...formData, error: "Login failed. Please try again." });
       }
     } catch (e: any) {
       setFormData({ ...formData, error: e.message });
+      setLoading(false);
     }
   };
 
@@ -149,9 +154,25 @@ const Login = ({
               Remember me
             </span>
           </div>
-          <button className="my-5 bg-brandPrimary text-white py-2 px-4 transition-all duration-300 rounded hover:bg-darkBrandPrimary">
-            Sign in
-          </button>
+          {loading ? (
+            <button
+              disabled
+              className="my-5 text-white py-2 px-4 transition-all duration-300  bg-[#f0667e] flex justify-center items-center "
+            >
+              Signing in{" "}
+              <ClipLoader
+                size={12}
+                color="white"
+                loading={true}
+                className="ms-1 animate-none"
+              />
+            </button>
+          ) : (
+            <button className="my-5 bg-brandPrimary text-white py-2 px-4 transition-all duration-300 rounded hover:bg-darkBrandPrimary">
+              Sign in
+            </button>
+          )}
+
           <div className="flex justify-between text-center text-[#263238] text-sm">
             <div>
               <span>Need an account?</span>

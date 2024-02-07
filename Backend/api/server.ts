@@ -71,6 +71,7 @@ app.use(
     origin: [
       "https://react-ts-company-2023.vercel.app",
       "https://zephyron.onrender.com/api",
+      "http://localhost:3000",
     ],
     credentials: true,
   }),

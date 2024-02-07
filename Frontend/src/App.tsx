@@ -1,20 +1,15 @@
-import React, { Suspense, useContext, useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import {
-  ApolloLink,
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink,
-  useQuery,
-  ApolloError,
   split,
   HttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { onError, ErrorResponse } from "@apollo/client/link/error";
-import { WebSocketLink } from "@apollo/client/link/ws";
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { getMainDefinition } from "apollo-utilities";
 import { createClient } from "graphql-ws";
@@ -22,7 +17,6 @@ import PrivateRoute from "./navigation/PrivateRoute";
 import PublicRoute from "./navigation/PublicRoute";
 import { useAppSelector } from "./hooks/hooks";
 import { getUserData } from "./utils/Utils";
-import ErrorMiddleware from "./utils/ErrorMiddleware";
 import Home from "./pages/Home";
 import Application from "./pages/Application";
 import "./App.scss";
@@ -56,12 +50,12 @@ const App: React.FC = () => {
   );
 
   const httpLink = new HttpLink({
-    uri: "https://zephyron.onrender.com/api",
+    uri: process.env.BACKEND_URI || "http://localhost:3301/api",
   });
 
   const wsLink = new GraphQLWsLink(
     createClient({
-      url: "ws://zephyron.onrender.com/api",
+      url: process.env.BACKEND_URL || "ws://localhost:3301/api",
     })
   );
 

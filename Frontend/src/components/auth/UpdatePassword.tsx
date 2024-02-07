@@ -5,6 +5,7 @@ import Success from "../Success";
 import { UPDATE_USER_MUTATION } from "../../Query";
 import Modal from "../Modal";
 import PasswordEye from "../PasswordEye";
+import { ClipLoader } from "react-spinners";
 
 type Props = {
   email: string | undefined;
@@ -15,6 +16,7 @@ type Props = {
 const UpdatePassword = ({ email, isVisible, onClose }: Props) => {
   const oldPasswordRef = useRef<HTMLInputElement>(null);
   const newPasswordRef = useRef<HTMLInputElement>(null);
+  const [loading, setLoading] = useState(false);
   const showPasswordRef = useRef<{
     oldPassword: boolean;
     newPassword: boolean;
@@ -50,7 +52,7 @@ const UpdatePassword = ({ email, isVisible, onClose }: Props) => {
       resetMessage();
       return;
     }
-
+    setLoading(true);
     try {
       const user = await updateUser({
         variables: {
@@ -62,11 +64,13 @@ const UpdatePassword = ({ email, isVisible, onClose }: Props) => {
         },
       });
       setSuccessMessage("Sucessfully Update Password.");
+      setLoading(false);
       resetMessage();
       oldPasswordRef.current && (oldPasswordRef.current.value = "");
       newPasswordRef.current && (newPasswordRef.current.value = "");
     } catch (e: any) {
       setErrorMessage(e.message);
+      setLoading(false);
       resetMessage();
     }
   };
@@ -132,12 +136,28 @@ const UpdatePassword = ({ email, isVisible, onClose }: Props) => {
               }
             />
           </div>
-          <button
-            type="submit"
-            className="p-3 mt-8 bg-brandPrimary text-white rounded transition duration-300 hover:bg-darkBrandPrimary"
-          >
-            Update Password
-          </button>
+          {loading ? (
+            <button
+              type="submit"
+              disabled
+              className="p-3 mt-8 text-white rounded transition duration-300 bg-[#f0667e] flex justify-center items-center"
+            >
+              Updating Password
+              <ClipLoader
+                size={12}
+                color="white"
+                loading={true}
+                className="ms-1 animate-none"
+              />
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="p-3 mt-8 bg-brandPrimary text-white rounded transition duration-300 hover:bg-darkBrandPrimary"
+            >
+              Update Password
+            </button>
+          )}
         </form>
       </div>
     </Modal>

@@ -7,6 +7,7 @@ import Modal from "../Modal";
 import Error from "../Error";
 import { CREATE_USER_MUTATION } from "../../Query";
 import PasswordEye from "../PasswordEye";
+import { ClipLoader } from "react-spinners";
 
 type Props = {
   isVisible: boolean;
@@ -26,6 +27,7 @@ const Register: React.FC<Props> = ({
     showPassword: false,
     confirmPassword: false,
   });
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -53,6 +55,7 @@ const Register: React.FC<Props> = ({
       });
       return;
     }
+    setLoading(true);
     try {
       const user = await createUser({
         variables: {
@@ -65,6 +68,7 @@ const Register: React.FC<Props> = ({
       });
       if (user) {
         setMessage();
+        setLoading(false);
         openSignIn();
       }
     } catch (e: any) {
@@ -73,9 +77,11 @@ const Register: React.FC<Props> = ({
           ...formData,
           error: "This email is already associated with account",
         });
+        setLoading(false);
         return;
       }
       setFormData({ ...formData, error: e.message });
+      setLoading(false);
     }
   };
 
@@ -192,9 +198,24 @@ const Register: React.FC<Props> = ({
               }
             />
           </div>
-          <button className="my-5 bg-brandPrimary text-white py-2 px-4 transition-all duration-300 rounded hover:bg-darkBrandPrimary">
-            Sign UP
-          </button>
+          {loading ? (
+            <button
+              disabled
+              className="my-5 text-white py-2 px-4 transition-all duration-300 rounded  bg-[#f0667e] flex justify-center items-center"
+            >
+              Signing Up
+              <ClipLoader
+                size={12}
+                color="white"
+                loading={true}
+                className="ms-1 animate-none"
+              />
+            </button>
+          ) : (
+            <button className="my-5 bg-brandPrimary text-white py-2 px-4 transition-all duration-300 rounded hover:bg-darkBrandPrimary">
+              Sign Up
+            </button>
+          )}
           <div className="text-center text-[#263238] text-sm">
             <span>Already have an account?</span>
             <button

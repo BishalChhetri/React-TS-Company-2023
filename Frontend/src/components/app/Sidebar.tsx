@@ -40,7 +40,6 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   useEffect(() => {
     setUserData(data?.users);
-    console.log(loading);
   }, [data, loading]);
 
   useEffect(() => {
