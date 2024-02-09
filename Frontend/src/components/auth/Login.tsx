@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { useMutation } from "@apollo/client";
-import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import Error from "../Error";
 import Success from "../Success";
@@ -9,7 +8,7 @@ import Modal from "../Modal";
 import { useAppDispatch } from "../../hooks/hooks";
 import { setUser } from "../../redux/userSlice";
 import PasswordEye from "../PasswordEye";
-import { ClipLoader } from "react-spinners";
+import { ScaleLoader } from "react-spinners";
 
 type Props = {
   isVisible: boolean;
@@ -31,8 +30,8 @@ const Login = ({
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "johnsmith@gmail.com",
+    password: "johnsmith",
     error: "",
     isRemember: false,
   });
@@ -160,11 +159,13 @@ const Login = ({
               className="my-5 text-white py-2 px-4 transition-all duration-300  bg-[#f0667e] flex justify-center items-center "
             >
               Signing in{" "}
-              <ClipLoader
-                size={12}
+              <ScaleLoader
+                height={6}
+                margin={1}
+                width={1.5}
                 color="white"
                 loading={true}
-                className="ms-1 animate-none"
+                className="ms-2 mt-[1px]"
               />
             </button>
           ) : (

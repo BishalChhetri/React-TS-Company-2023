@@ -7,7 +7,7 @@ import Modal from "../Modal";
 import Error from "../Error";
 import { CREATE_USER_MUTATION } from "../../Query";
 import PasswordEye from "../PasswordEye";
-import { ClipLoader } from "react-spinners";
+import { ScaleLoader } from "react-spinners";
 
 type Props = {
   isVisible: boolean;
@@ -75,7 +75,7 @@ const Register: React.FC<Props> = ({
       if (e.message === "Validation error") {
         setFormData({
           ...formData,
-          error: "This email is already associated with account",
+          error: "This email is already associated with an account.",
         });
         setLoading(false);
         return;
@@ -204,11 +204,13 @@ const Register: React.FC<Props> = ({
               className="my-5 text-white py-2 px-4 transition-all duration-300 rounded  bg-[#f0667e] flex justify-center items-center"
             >
               Signing Up
-              <ClipLoader
-                size={12}
+              <ScaleLoader
+                height={6}
+                margin={1}
+                width={1.5}
                 color="white"
                 loading={true}
-                className="ms-1 animate-none"
+                className="ms-2 mt-[1px]"
               />
             </button>
           ) : (

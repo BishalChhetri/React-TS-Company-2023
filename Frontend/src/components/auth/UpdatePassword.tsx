@@ -5,7 +5,7 @@ import Success from "../Success";
 import { UPDATE_USER_MUTATION } from "../../Query";
 import Modal from "../Modal";
 import PasswordEye from "../PasswordEye";
-import { ClipLoader } from "react-spinners";
+import { ScaleLoader } from "react-spinners";
 
 type Props = {
   email: string | undefined;
@@ -143,11 +143,13 @@ const UpdatePassword = ({ email, isVisible, onClose }: Props) => {
               className="p-3 mt-8 text-white rounded transition duration-300 bg-[#f0667e] flex justify-center items-center"
             >
               Updating Password
-              <ClipLoader
-                size={12}
+              <ScaleLoader
+                height={6}
+                margin={1}
+                width={1.5}
                 color="white"
                 loading={true}
-                className="ms-1 animate-none"
+                className="ms-2 mt-[1px]"
               />
             </button>
           ) : (

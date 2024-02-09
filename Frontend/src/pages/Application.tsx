@@ -75,7 +75,11 @@ const Application = () => {
 
         <div
           onClick={toggleOpen}
-          onMouseLeave={() => setIsOpen(false)}
+          onMouseLeave={() => {
+            setTimeout(() => {
+              setIsOpen(false);
+            }, 5000);
+          }}
           className=" col-span-1 p-2  border flex flex-row border-neutral-200 items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition w-fit  justify-end ms-auto my-auto me-4 relative"
         >
           <FaBars />
