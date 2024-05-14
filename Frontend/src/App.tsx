@@ -50,12 +50,18 @@ const App: React.FC = () => {
   );
 
   const httpLink = new HttpLink({
-    uri: process.env.BACKEND_URI || "https://zephyron.onrender.com/api",
+    uri:
+      process.env.BACKEND_URI ||
+      "https://react-ts-company-2023-production.up.railway.app/api" ||
+      "https://zephyron.onrender.com/api",
   });
 
   const wsLink = new GraphQLWsLink(
     createClient({
-      url: process.env.BACKEND_URL || "ws://zephyron.onrender.com/api",
+      url:
+        process.env.BACKEND_URL ||
+        "ws://react-ts-company-2023-production.up.railway.app/api" ||
+        "ws://zephyron.onrender.com/api",
     })
   );
 
