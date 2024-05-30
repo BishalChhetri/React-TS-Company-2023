@@ -31,13 +31,22 @@ const MessageCore: React.FC<Props> = ({ messages, currentUser }) => {
           wheelPropagation: false as boolean,
           suppressScrollX: true as boolean,
         }}
-        className="max-h-[455px] overflow-y-auto p-2"
+        className="max-h-[calc(100vh-250px)] overflow-y-auto p-2"
       >
         {messageAll.map((message, index) => {
+          const currMessage = messageAll[index];
           const nextMessage = messageAll[index + 1];
 
+          // const showTime = !nextMessage || message.sender_id !== nextMessage.sender_id;
+
           const showTime =
-            !nextMessage || message.sender_id !== nextMessage.sender_id;
+            !nextMessage ||
+            (nextMessage &&
+              Math.abs(
+                parseInt(currMessage.createdAt) -
+                  parseInt(nextMessage.createdAt)
+              ) >
+                24 * 60 * 60 * 1000);
 
           return (
             <div
@@ -50,7 +59,7 @@ const MessageCore: React.FC<Props> = ({ messages, currentUser }) => {
             >
               <div className="w-3/5 flex flex-col">
                 <div
-                  className={`p-3 rounded-lg ${
+                  className={`p-3 rounded-lg cursor-pointer ${
                     message.sender_id === currentUser?.id
                       ? "bg-[#f9c9d2] text-blue-800 ml-auto"
                       : "bg-green-200 text-green-800 me-auto"

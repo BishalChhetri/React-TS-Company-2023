@@ -61,7 +61,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div
         className={`col-span-1 ${
           activeUser ? "bg-white" : "bg-neutralSilver"
-        } flex flex-col justify-between md:flex hidden ${
+        }  flex-col justify-between md:flex hidden ${
           isMenuOpen &&
           "col-span-1 bg-neutralSilver flex flex-col justify-between"
         }`}
@@ -73,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         ) : (
           <PerfectScrollbar
             options={{ wheelPropagation: false as boolean }}
-            className="max-h-[83vh] overflow-y-auto p-2 "
+            className="max-h-[calc(100vh-130px)] overflow-y-auto p-2"
           >
             <div>
               {userData &&
@@ -103,9 +103,11 @@ const Sidebar: React.FC<SidebarProps> = ({
                         alt=""
                         className="rounded-full w-[3rem]"
                       />
-                      <div className="flex flex-col ms-2 justify-center lg:flex hidden">
-                        <span className="w-full">{data.name}</span>
-                        <span className="text-[0.5rem]">{data.email}</span>
+                      <div className=" flex-col ms-2 justify-center lg:flex hidden truncate">
+                        <span className="w-full truncate">{data.name}</span>
+                        <span className="text-[0.5rem] truncate">
+                          {data.email}
+                        </span>
                       </div>
                     </div>
                   ) : null
@@ -117,7 +119,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div
         className={`${
           isMenuOpen
-            ? "col-span-4 bg-neutralSilver flex flex-col justify-between h-[90vh]"
+            ? "col-span-4 bg-neutralSilver flex flex-col justify-between h-[90vh] w-[190px]"
             : "hidden"
         }`}
         onMouseLeave={toggleMenu}
@@ -159,9 +161,11 @@ const Sidebar: React.FC<SidebarProps> = ({
                         alt=""
                         className="rounded-full w-[3rem]"
                       />
-                      <div className="flex flex-col ms-2 justify-center">
-                        <span className="w-full">{data.name}</span>
-                        <span className="text-[0.5rem]">{data.email}</span>
+                      <div className="flex flex-col ms-2 justify-center truncate">
+                        <span className="w-full truncate">{data.name}</span>
+                        <span className="text-[0.5rem] truncate">
+                          {data.email}
+                        </span>
                       </div>
                     </div>
                   ) : null

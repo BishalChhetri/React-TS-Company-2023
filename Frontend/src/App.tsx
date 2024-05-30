@@ -60,8 +60,8 @@ const App: React.FC = () => {
     createClient({
       url:
         process.env.BACKEND_URL ||
-        "ws://react-ts-company-2023-production.up.railway.app/api" ||
-        "ws://zephyron.onrender.com/api",
+        "wss://react-ts-company-2023-production.up.railway.app/api" ||
+        "wss://zephyron.onrender.com/api",
     })
   );
 

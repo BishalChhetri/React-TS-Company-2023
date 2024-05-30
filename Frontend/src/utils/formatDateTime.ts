@@ -7,5 +7,5 @@ export default function formatDateTime(dateString: string) {
   const minute = `0${date.getMinutes()}`.slice(-2);
   const ampm = date.getHours() >= 12 ? "PM" : "AM";
 
-  return `${year}-${month}-${day} ${hour}:${minute} ${ampm}`;
+  return `${year}/${month}/${day} ${hour}:${minute} ${ampm}`;
 }

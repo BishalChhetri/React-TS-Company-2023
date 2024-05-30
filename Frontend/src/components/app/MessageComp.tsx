@@ -89,21 +89,17 @@ const MessageComp = ({ isMenuOpen, activeUser, auth }: Props) => {
           <span className="text-[0.5rem]">{activeUser?.email}</span>
         </div>
       )}
-      {loading ? (
+      {loading && (
         <div className="flex justify-center items-center mt-8">
           <ClipLoader size={20} color="#ee4e6a" />
         </div>
-      ) : (
-        <></>
       )}
-      {messages && !loading && messages.length > 0 ? (
-        <div className="flex flex-col justify-end mt-auto mb-2 max-h-[460px]">
+      {messages && !loading && messages.length > 0 && (
+        <div className="flex flex-col justify-end mt-auto mb-2">
           <MessageCore messages={messages} currentUser={auth} />
         </div>
-      ) : (
-        <></>
       )}
-      {!messages && !loading ? (
+      {!messages && !loading && (
         <div className="flex m-auto justify-center relative">
           <span className="me-1 text-2xl font-bold text-neutralDGrey text-end ">
             Start Conversation
@@ -113,8 +109,6 @@ const MessageComp = ({ isMenuOpen, activeUser, auth }: Props) => {
             className="text-darkBrandPrimary absolute -right-8 -bottom-1 transform -translate-y-1/2"
           />
         </div>
-      ) : (
-        <></>
       )}
       <form
         action="submit"

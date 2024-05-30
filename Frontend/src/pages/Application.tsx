@@ -34,7 +34,7 @@ const Application = () => {
         <div className=" col-span-1 bg-white ">
           <a
             href="/app"
-            className=" font-semibold flex items-center space-x-3 p-4 md:flex hidden"
+            className=" font-semibold items-center space-x-3 p-4 md:flex hidden"
           >
             <img
               src={logo}
@@ -60,13 +60,13 @@ const Application = () => {
         <div className="col-span-1 hidden md:flex md:p-0 justify-end">
           <div className="border h-fit w-full md:w-auto rounded-full shadow-sm hover:shadow-md transition cursor-pointer p-3">
             <div className="flex flex-row items-center justify-between">
-              <div className="text-brandPrimary font-semibold px-6">
+              <div className="text-brandPrimary font-semibold px-4">
                 Zephyron
               </div>
-              <div className="hidden sm:block text-brandPrimary font-semibold px-6 border-x flex-1 text-center">
+              <div className="hidden sm:block text-brandPrimary font-semibold px-4 border-x flex-1 text-center">
                 Chat
               </div>
-              <div className="text-brandPrimary px-6 font-semibold flex flex-row items-center">
+              <div className="text-brandPrimary px-4 font-semibold flex flex-row items-center">
                 Messenger
               </div>
             </div>
@@ -93,7 +93,7 @@ const Application = () => {
             />
           </div>
           {isOpen && (
-            <div className="absolute rounded-xl shadow-md w-[160px]  bg-white overflow-hidden right-8 top-12 text-sm">
+            <div className="absolute rounded-xl shadow-md w-[160px]  bg-white overflow-hidden right-8 top-12 text-sm z-50">
               <div className="flex flex-col cursor-pointer">
                 <div
                   onClick={() => {
@@ -114,7 +114,7 @@ const Application = () => {
           )}
         </div>
       </nav>
-      <div className="grid grid-cols-6 h-[89.6vh]">
+      <div className="grid grid-cols-6 h-[calc(100vh-72px)]">
         <Sidebar
           auth={auth}
           isMenuOpen={isMenuOpen}
@@ -122,7 +122,7 @@ const Application = () => {
           activeUser={activeUser}
           setActiveUser={setActiveUser}
         />
-        {!activeUser ? (
+        {!activeUser && !isMenuOpen ? (
           <BlankMesssage />
         ) : (
           <MessageComp
