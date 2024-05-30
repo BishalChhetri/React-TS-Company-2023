@@ -57,7 +57,7 @@ const Application = () => {
           </div>
         </div>
 
-        <div className="col-span-1 hidden md:flex md:p-0 justify-end">
+        <div className="col-span-1 hidden md:flex md:p-0 justify-end my-auto">
           <div className="border h-fit w-full md:w-auto rounded-full shadow-sm hover:shadow-md transition cursor-pointer p-3">
             <div className="flex flex-row items-center justify-between">
               <div className="text-brandPrimary font-semibold px-4">
