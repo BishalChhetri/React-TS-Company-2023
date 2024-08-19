@@ -66,22 +66,15 @@ const wsServerCleanup = useServer({ schema }, wsServer);
 
 app.use(helmet());
 
-// app.use(
-//   cors({
-//     origin: [
-//       "https://react-ts-company-2023.vercel.app",
-//       "https://react-ts-company-2023-production.up.railway.app/api",
-//       "https://zephyron.onrender.com/api",
-//       "http://localhost:3000",
-//     ],
-//     credentials: true,
-//   }),
-//   express.json()
-// );
-
 app.use(
   cors({
-    origin: "*",
+    origin: [
+      "https://react-ts-company-2023.vercel.app",
+      "https://react-ts-company-2023-production.up.railway.app/api",
+      "https://zephyron.onrender.com/api",
+      "http://localhost:3000",
+      "https://zephyron.onrender.com",
+    ],
     credentials: true,
   }),
   express.json()
