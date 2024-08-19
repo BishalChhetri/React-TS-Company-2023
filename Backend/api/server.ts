@@ -73,7 +73,6 @@ app.use(
       "https://react-ts-company-2023-production.up.railway.app/api",
       "https://zephyron.onrender.com/api",
       "http://localhost:3000",
-      "https://zephyron.onrender.com",
     ],
     credentials: true,
   }),
