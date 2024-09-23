@@ -52,8 +52,8 @@ const App: React.FC = () => {
   const httpLink = new HttpLink({
     uri:
       process.env.BACKEND_URI ||
-      "https://zephyron.onrender.com/api" ||
-      "https://react-ts-company-2023-production.up.railway.app/api",
+      "https://react-ts-company-2023-production.up.railway.app/api" ||
+      "https://zephyron.onrender.com/api",
   });
 
   console.log({ app: process.env.BACKEND_URL });
@@ -62,8 +62,8 @@ const App: React.FC = () => {
     createClient({
       url:
         process.env.BACKEND_URL ||
-        "wss://zephyron.onrender.com/api" ||
-        "wss://react-ts-company-2023-production.up.railway.app/api",
+        "wss://react-ts-company-2023-production.up.railway.app/api" ||
+        "wss://zephyron.onrender.com/api",
     })
   );
 
