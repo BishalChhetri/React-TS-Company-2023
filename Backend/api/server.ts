@@ -74,12 +74,11 @@ app.use(
     //   "https://zephyron.onrender.com/api",
     //   "http://localhost:3000",
     // ],
-    origin: "*",
     credentials: true,
   }),
   express.json()
 );
 
-// app.options("*", cors());
+app.options("*", cors());
 
 module.exports = server;
