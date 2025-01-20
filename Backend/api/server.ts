@@ -80,6 +80,6 @@ app.use(
   express.json()
 );
 
-app.options("*", cors());
+// app.options("*", cors());
 
 module.exports = server;
